@@ -17,12 +17,15 @@ return [
     // Which folders you want to generate (Array)
     'folders' => [
         'entries' => '',
-        'asset' => 'asset'
+    ],
+
+    'links' => [
+        'assets' => 'assets'
     ],
 
     // Plugin classes with namespace (Array)
     'plugins' => [
-
+        //
     ],
 
     'system' => [
