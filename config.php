@@ -28,6 +28,10 @@ return [
         //
     ],
 
+    'components' => [
+        'hero' => 'components.hero-banner'
+    ],
+
     'system' => [
         'debug' => 0,
         'timezone' => 'UTC',

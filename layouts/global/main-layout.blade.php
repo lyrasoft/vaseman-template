@@ -1,6 +1,6 @@
-@extends('_global.html')
+@extends('global.body')
 
-@section('content-wrapper')
+@section('body')
     <div class="container main-layout pt-4">
         <div class="row">
             <div class="col-lg-9 main-layout-body">

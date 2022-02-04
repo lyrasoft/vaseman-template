@@ -1,7 +1,7 @@
 ---
 title: Sample Blog Post
 ---
-@extends('_global.main-layout')
+@extends('global.main-layout')
 
 @section('banner')
     @component('components.jumbotron')

@@ -7,38 +7,41 @@
 
 import fusion, { sass, babel, parallel } from '@windwalker-io/fusion';
 import { installVendors } from './build/js/install-vendors.mjs';
+import proc from 'child_process';
+
+export async function up() {
+  // Watch start
+  fusion.watch([
+    'entries/**/*',
+    'layouts/**/*',
+    'assets/**/*'
+  ]);
+  // Watch end
+
+  let cmd = 'vaseman up ..';
+
+  if (process.env.NODE_ENV === 'production') {
+    cmd += ' --hard';
+  }
+
+  proc.exec(cmd, (err, stdout, stderr) => {
+    console.log(stdout);
+  });
+}
 
 export async function css() {
   // Watch start
-  fusion.watch([
-    'resources/assets/scss/**/*.scss',
-    // 'src/Module/**/assets/*.scss',
-    // ...findModules('**/assets/*.scss')
-  ]);
+  fusion.watch('resources/assets/scss/**/*.scss');
   // Watch end
 
   // Front
   sass(
-    [
-      'resources/assets/scss/front/main.scss',
-      // ...findModules('Front/**/assets/*.scss'),
-      // 'src/Module/Front/**/assets/*.scss'
-    ],
-    'www/assets/css/front/main.css'
+    'resources/assets/scss/main.scss',
+    'assets/css/main.css'
   );
   sass(
-    'resources/assets/scss/front/bootstrap.scss',
-    'www/assets/css/front/bootstrap.css'
-  );
-
-  // Admin
-  sass(
-    [
-      'resources/assets/scss/admin/main.scss',
-      // ...findModules('Admin/**/assets/*.scss'),
-      // 'src/Module/Admin/**/assets/*.scss'
-    ],
-    'www/assets/css/admin/main.css'
+    'resources/assets/scss/bootstrap.scss',
+    'assets/css/bootstrap.css'
   );
 }
 
@@ -48,7 +51,7 @@ export async function js() {
   // Watch end
 
   // Compile Start
-  return await babel('resources/assets/src/**/*.{js,mjs}', 'www/assets/js/', { module: 'systemjs' });
+  babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/');
 }
 
 export async function images() {
@@ -57,36 +60,24 @@ export async function images() {
   // Watch end
 
   // Compile Start
-  return await fusion.copy('resources/assets/images/**/*', 'www/assets/images/')
+  return await fusion.copy('resources/assets/images/**/*', 'assets/images/')
   // Compile end
 }
 
-// export async function syncJS() {
-//   // Watch start
-//   fusion.watch(['src/Module/**/assets/**/*.{js,mjs}', ...findModules('**/assets/*.{js,mjs}')]);
-//   // Watch end
-//
-//   // Compile Start
-//   const { dest } = await jsSync(
-//     'src/Module/',
-//     'www/assets/js/view/'
-//   );
-//
-//   babel(dest.path + '**/*.{mjs,js}', null, { module: 'systemjs' });
-//   // Compile end
-//
-//   return Promise.all([]);
-// }
+// To fix that last task watch won't work.
+export async function nope() {}
 
 export async function install() {
   return installVendors(
     [
-      '@fortawesome/fontawesome-pro'
+      '@fortawesome/fontawesome-pro',
+      'bootstrap',
+      'jquery'
     ]
   );
 }
 
-export default parallel(css, js, images);
+export default parallel(css, js, images, up);
 
 /*
  * APIs

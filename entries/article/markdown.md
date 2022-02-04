@@ -1,5 +1,5 @@
 ---
-layout: _global/main-layout
+layout: global/main-layout
 title: Markdown Text
 foo: bar
 ---
