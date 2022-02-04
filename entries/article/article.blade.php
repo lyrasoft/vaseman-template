@@ -4,9 +4,9 @@ title: Sample Blog Post
 @extends('global.main-layout')
 
 @section('banner')
-    @component('components.jumbotron')
+    <x-hero-banner>
         <h1 class="text-center">Sample blog post</h1>
-    @endcomponent
+    </x-hero-banner>
 @stop
 
 @section('content')
