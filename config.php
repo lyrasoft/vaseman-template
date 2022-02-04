@@ -29,7 +29,9 @@ return [
     ],
 
     'components' => [
-        'hero' => 'components.hero-banner'
+        'hero-banner' => 'components.hero-banner',
+        'breadcrumb' => 'components.breadcrumb',
+        'pagination' => 'components.pagination',
     ],
 
     'system' => [

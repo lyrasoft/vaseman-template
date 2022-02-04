@@ -2,7 +2,7 @@
     <li class="page-item">
         <a class="page-link" href="#" tabindex="-1">
             <span class="fa fa-chevron-left"></span>
-            <span class="sr-only">
+            <span class="sr-only visually-hidden">
                 Previous
             </span>
         </a>
@@ -16,7 +16,7 @@
     @endforeach
     <li class="page-item">
         <a class="page-link" href="#">
-            <span class="sr-only">
+            <span class="sr-only visually-hidden">
                 Next
             </span>
             <span class="fa fa-chevron-right"></span>
