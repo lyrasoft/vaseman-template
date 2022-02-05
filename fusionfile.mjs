@@ -18,11 +18,7 @@ export async function up() {
   ]);
   // Watch end
 
-  let cmd = 'vaseman up ..';
-
-  if (process.env.NODE_ENV === 'production') {
-    cmd += ' --hard';
-  }
+  let cmd = 'vaseman up .. --hard';
 
   return proc.exec(cmd, (err, stdout, stderr) => {
     console.log(stdout);
