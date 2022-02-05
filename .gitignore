@@ -6,7 +6,8 @@ Thumbs.db
 .idea
 
 # Project
-/assets
+/assets/*
+!/assets/.gitkeep
 
 # Libraries
 /vendor
