@@ -70,7 +70,7 @@ export async function nope() {}
 export async function install() {
   return installVendors(
     [
-      '@fortawesome/fontawesome-pro',
+      '@fortawesome/fontawesome-free',
       'bootstrap',
       'jquery'
     ]
