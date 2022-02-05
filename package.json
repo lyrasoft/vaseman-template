@@ -9,7 +9,7 @@
         "postinstall": "yarn build install"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-pro": "^6.0.0-beta3",
+        "@fortawesome/fontawesome-free": "^6.0.0-beta3",
         "@windwalker-io/core": "^4.0.5",
         "@windwalker-io/fusion": "^1.0.5",
         "bootstrap": "^5.1.3",
