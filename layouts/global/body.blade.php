@@ -41,7 +41,7 @@
 @show
 
 @section('body')
-@yield('content', 'Content')
+@yield('content', $content ?? 'Content')
 @show
 
 @section('copyright')
