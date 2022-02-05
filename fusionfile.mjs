@@ -64,11 +64,6 @@ export async function images() {
   // Compile end
 }
 
-// To fix that last task watch won't work.
-export async function nope() {
-  // fusion.watch(['resources/assets/src/**/*.{js,mjs}']);
-}
-
 export async function install() {
   return installVendors(
     [
