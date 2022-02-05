@@ -5,7 +5,7 @@
  * @license    MIT
  */
 
-import fusion, { sass, babel, parallel } from '@windwalker-io/fusion';
+import fusion, { sass, babel, series } from '@windwalker-io/fusion';
 import { installVendors } from './build/js/install-vendors.mjs';
 import proc from 'child_process';
 
@@ -24,7 +24,7 @@ export async function up() {
     cmd += ' --hard';
   }
 
-  proc.exec(cmd, (err, stdout, stderr) => {
+  return proc.exec(cmd, (err, stdout, stderr) => {
     console.log(stdout);
   });
 }
@@ -65,7 +65,9 @@ export async function images() {
 }
 
 // To fix that last task watch won't work.
-export async function nope() {}
+export async function nope() {
+  // fusion.watch(['resources/assets/src/**/*.{js,mjs}']);
+}
 
 export async function install() {
   return installVendors(
@@ -77,7 +79,7 @@ export async function install() {
   );
 }
 
-export default parallel(css, js, images, up);
+export default series(css, js, images, up);
 
 /*
  * APIs
