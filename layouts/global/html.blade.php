@@ -9,14 +9,13 @@
 
     <title>@yield('title', $helper->page->title($config['title'] ?? ''))</title>
 
-    <link href="{{ $asset->path('vendor/@fortawesome/fontawesome-pro/css/all.min.css') }}" rel="stylesheet" />
-    <link href="{{ $asset->path('css/bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ $asset->path('css/main.css') }}" rel="stylesheet">
-
     @stack('meta')
     @yield('meta')
 
+    <link href="{{ $asset->path('vendor/@fortawesome/fontawesome-pro/css/all.min.css') }}" rel="stylesheet" />
+    <link href="{{ $asset->path('css/bootstrap.css') }}" rel="stylesheet" />
     @stack('style')
+    <link href="{{ $asset->path('css/main.css') }}" rel="stylesheet">
 
     @stack('head')
 </head>
