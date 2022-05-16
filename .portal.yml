@@ -1,10 +1,10 @@
-title: Earth
-public: /www
+title: Vaseman
+public: /
 parses:
-    - build/portal/.env.dist
-    - build/portal/.npmrc.dist
+    - .vaseman/.npmrc.dist
 scripts:
-    - cp build/portal/.env.dist .env
-    - cp build/portal/.npmrc.dist .npmrc
-    - composer install
-    - php windwalker run preparedev
+    - rm -rf assets
+    - cp .vaseman/.npmrc.dist .vaseman/.npmrc
+    - yarn install --cwd .vaseman
+    - cd .vaseman; yarn build
+    - vaseman up
