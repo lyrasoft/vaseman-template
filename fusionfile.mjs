@@ -22,7 +22,10 @@ export async function up() {
 
   if (process.env.NODE_ENV === 'production') {
     cmd += ' --hard';
+    cmd += ' --asset-version';
   }
+
+  console.log('>> ' + cmd);
 
   return proc.exec(cmd, (err, stdout, stderr) => {
     console.log(stdout);
@@ -35,14 +38,16 @@ export async function css() {
   // Watch end
 
   // Front
-  sass(
-    'resources/assets/scss/main.scss',
-    'assets/css/main.css'
-  );
-  sass(
-    'resources/assets/scss/bootstrap.scss',
-    'assets/css/bootstrap.css'
-  );
+  return Promise.all([
+    sass(
+      'resources/assets/scss/main.scss',
+      'assets/css/main.css'
+    ),
+    sass(
+      'resources/assets/scss/bootstrap.scss',
+      'assets/css/bootstrap.css'
+    )
+  ]);
 }
 
 export async function js() {
@@ -51,7 +56,7 @@ export async function js() {
   // Watch end
 
   // Compile Start
-  babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/');
+  return await babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/');
 }
 
 export async function images() {

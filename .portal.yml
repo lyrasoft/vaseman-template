@@ -7,4 +7,4 @@ scripts:
     - cp .vaseman/.npmrc.dist .vaseman/.npmrc
     - yarn install --cwd .vaseman
     - cd .vaseman; yarn build
-    - vaseman up
+    - vaseman up -a
