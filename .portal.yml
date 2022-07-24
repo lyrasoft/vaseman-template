@@ -6,5 +6,4 @@ scripts:
     - rm -rf assets
     - cp .vaseman/.npmrc.dist .vaseman/.npmrc
     - yarn install --cwd .vaseman
-    - cd .vaseman; yarn build
-    - vaseman up -a
+    - cd .vaseman; yarn build:prod
