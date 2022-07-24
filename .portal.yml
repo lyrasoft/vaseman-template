@@ -5,5 +5,5 @@ parses:
 scripts:
     - rm -rf assets
     - cp .vaseman/.npmrc.dist .vaseman/.npmrc
-    - yarn install --cwd .vaseman
-    - cd .vaseman; yarn build:prod
+    - yarn --cwd .vaseman install
+    - yarn --cwd .vaseman build:prod
