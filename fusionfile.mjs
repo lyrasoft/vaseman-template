@@ -5,7 +5,7 @@
  * @license    MIT
  */
 
-import fusion, { sass, babel, series } from '@windwalker-io/fusion';
+import fusion, { sass, babel, series, parallel, wait } from '@windwalker-io/fusion';
 import { installVendors } from './build/js/install-vendors.mjs';
 import proc from 'child_process';
 
@@ -38,7 +38,7 @@ export async function css() {
   // Watch end
 
   // Front
-  return Promise.all([
+  return wait(
     sass(
       'resources/assets/scss/main.scss',
       'assets/css/main.css'
@@ -47,7 +47,7 @@ export async function css() {
       'resources/assets/scss/bootstrap.scss',
       'assets/css/bootstrap.css'
     )
-  ]);
+  );
 }
 
 export async function js() {
@@ -56,7 +56,9 @@ export async function js() {
   // Watch end
 
   // Compile Start
-  return await babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/');
+  return wait(
+    babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/')
+  );
 }
 
 export async function images() {
@@ -65,7 +67,9 @@ export async function images() {
   // Watch end
 
   // Compile Start
-  return await fusion.copy('resources/assets/images/**/*', 'assets/images/')
+  return wait(
+    fusion.copy('resources/assets/images/**/*', 'assets/images/')
+  );
   // Compile end
 }
 
@@ -79,7 +83,7 @@ export async function install() {
   );
 }
 
-export default series(css, js, images, up);
+export default series(parallel(css, js, images), up);
 
 /*
  * APIs
