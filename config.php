@@ -40,4 +40,8 @@ return [
         'timezone' => 'UTC',
         'error_reporting' => -1,
     ],
+    
+    'assets' => [
+        'append_version' => true
+    ]
 ];
