@@ -1,11 +1,4 @@
-/**
- * Part of Windwalker Fusion project.
- *
- * @copyright  Copyright (C) 2021 LYRASOFT.
- * @license    MIT
- */
-
-import fusion, { sass, babel, series, parallel, wait } from '@windwalker-io/fusion';
+import fusion, { sass, babel, ts, series, parallel, wait } from '@windwalker-io/fusion';
 import { installVendors } from './build/js/install-vendors.mjs';
 import proc from 'child_process';
 
@@ -52,12 +45,13 @@ export async function css() {
 
 export async function js() {
   // Watch start
-  fusion.watch(['resources/assets/src/**/*.{js,mjs}']);
+  fusion.watch(['resources/assets/src/**/*.{js,mjs,ts}']);
   // Watch end
 
   // Compile Start
   return wait(
-    babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/')
+    ts('resources/assets/src/**/*.ts', 'assets/js/'),
+    babel('resources/assets/src/**/*.{js,mjs}', 'assets/js/'),
   );
 }
 
